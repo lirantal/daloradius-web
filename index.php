@@ -247,12 +247,12 @@ daloRADIUS is essentially a web application to manage a radius server so theoret
                         an <a href="http://www.enginx.com">enginx</a> product
                     </p>
                     
-                    <!--
+                    
                     <p class="floatRight">
-                        <a href="./" class="contact">Contact us</a>
-                        <a href="./" class="twitter">Follow us on Twitter</a>
+                        <a href="https://sourceforge.net/p/daloradius/discussion" class="contact">Support</a>
+                        <a href="http://twitter.com/daloradius" class="twitter">Follow us on Twitter</a>
                     </p>
-                    -->
+                    
 
             </footer>
             
