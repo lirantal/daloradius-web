@@ -185,6 +185,23 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 
                     <div class="clearFix">
                         
+
+                        <div class="col1-2">
+
+                            <h2>daloRADIUS Blog</h2>
+
+                            <?php
+                                foreach ($daloradiusRssFeed as $feed):
+                            ?>
+
+                                <h4> <a href="<?php print $feed['link'] ?>" > <?php print $feed['title'] ?> </a> </h4>
+
+                            <?php
+                                endforeach;
+                            ?>
+
+                        </div>
+
                         <div class="col1-2">
 
                             <h2>About daloRADIUS</h2>
@@ -192,40 +209,27 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
                             <p class="bold">
 daloRADIUS is an advanced RADIUS web platform aimed at managing Hotspots and general-purpose ISP deployments. It features rich user management, graphical reporting, accounting, and integrates with GoogleMaps for geo-locating (GIS). 
 daloRADIUS is written in PHP and JavaScript and utilizes a database abstraction layer which means that it supports many database systems, among them the popular MySQL, PostgreSQL, Sqlite, MsSQL, and many others.
-</p>
+                            </p>
 
                             <p>
 It is based on a FreeRADIUS deployment with a database server serving as the backend. Among other features it implements ACLs, GoogleMaps integration for locating hotspots/access points visually and many more features.
-
 daloRADIUS is essentially a web application to manage a radius server so theoretically it can manage any radius server but specifically it manages FreeRADIUS and it's database structure. Since version 0.9-3 daloRADIUS has introduced an application-wide database abstraction layer based on PHP's PEAR::DB package which support a range of database servers.
-</p>
+                            </p>
 
                         </div> <!-- / .col1-2 -->
 
                         <div class="col1-2">
 
-<script type="text/javascript" src="http://www.ohloh.net/p/daloradius/widgets/project_basic_stats.js"></script>
-<br/><br/>
+                            <script type="text/javascript"
+                            src="http://www.ohloh.net/p/daloradius/widgets/project_basic_stats.js">
+                            </script>
+                        </div>
 
-<script type="text/javascript" src="http://www.ohloh.net/p/daloradius/widgets/project_languages.js"></script>
+                        <div class="col2-3">
+                            <script type="text/javascript"
+                            src="http://www.ohloh.net/p/daloradius/widgets/project_languages.js">
+                            </script>
 
-
-<!--
-                            <h2>Recent projects</h2>
-
-                            <p class="gallery clearFix">
-                                <a class="photo" href="./tmp/image1.png" rel="gallery"><img src="./tmp/image1.png" alt="empty"></a>
-                                <a class="photo" href="./tmp/image2.png" rel="gallery"><img src="./tmp/image2.png" alt="empty"></a>
-                                <a class="photo" href="./tmp/image3.png" rel="gallery"><img src="./tmp/image3.png" alt="empty"></a>
-                                <a class="photo" href="./tmp/image4.png" rel="gallery"><img src="./tmp/image4.png" alt="empty"></a>
-                            </p>
-
-                            <h4>Spotify</h4>
-
-                            <p>Spotify is a digital music service that gives you access to millions of songs. Lorem ipsum dolor sit amet consectetur adipisicing.</p>
-
-                            <a href='/' class="more" title="View project">View project ›</a>
--->
                         </div> <!-- / .col1-2 -->
                     
                     </div> <!-- / .clearFix -->

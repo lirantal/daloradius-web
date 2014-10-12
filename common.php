@@ -17,3 +17,13 @@ $testimonials = array(
 	'Great product..just what I needed. Norman Visagie',
 	'Thanks for a great program. Bill Rothwell, Technical, FramBroadband WisP',
 );
+
+$daloradiusRss = simplexml_load_file('http://enginx.com/tag/daloradius/feed');
+$daloradiusRssFeed = array();
+foreach ($daloradiusRss->channel->item as $feed) {
+	$daloradiusRssFeed[] = array(
+		'title' => $feed->title, 
+		'link' => $feed->link, 
+		'date' => $feed->pubDate
+	);
+}
