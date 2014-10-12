@@ -112,15 +112,6 @@
                 </div> <!-- / #intro -->
 
                 <hr>
-
-                <div id="subIntro">
-                    <p>
-                        <i>
-                        <?php echo $testimonials[array_rand($testimonials)]; ?>
-                        </i>
-                        <a href="testimonials.php" class="more" title="Learn more">Learn more ›</a>
-                    </p>                    
-                </div> <!-- / #subIntro -->
                 
             </header>
 
@@ -234,6 +225,16 @@ daloRADIUS is essentially a web application to manage a radius server so theoret
                     
                     </div> <!-- / .clearFix -->
                     
+
+<div id="subIntro">
+                    <p>
+                        <i>
+                        <?php echo $testimonials[array_rand($testimonials)]; ?>
+                        </i>
+                        <a href="testimonials.php" class="more" title="Learn more">Learn more ›</a>
+                    </p>                    
+                </div> <!-- / #subIntro -->
+                                    
                     <hr>
 <!--
                     <div id="twitterBar">
@@ -248,7 +249,7 @@ daloRADIUS is essentially a web application to manage a radius server so theoret
             </div> <!-- / #content -->        
             
             <hr> 
-            
+
             <footer>
                 <div id="footer" class="clearFix">
                         
