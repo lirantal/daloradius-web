@@ -131,7 +131,10 @@
                 <div class="cols clearFix">
 
                     <div class="col1-3 withIcon icon1">
-                        <h2>The Book</h2>
+                        <h2>daloRADIUS User Guide</h2>
+                        <a href="http://www.amazon.com/daloRADIUS-User-Guide-Volume-1/dp/1463752199">
+                        <img src="images/daloradius-book-cover.jpg" style="float: left; height: 140px; margin-right: 10px;" />
+                        </a>
                         <p>
                         Spanning roughly 250 pages with step-by-step screenshots-based instructions, this book will guide you on managing a daloRADIUS deployed server to run FreeRADIUS AAA system.
                         <br/>
@@ -140,7 +143,10 @@
                     </div>
 
                     <div class="col1-3 withIcon icon2">
-                        <h2>Virtual Machine Appliance</h2>
+                        <h2>daloRADIUS Virtual Machine</h2>
+                        <a href="https://sourceforge.net/projects/daloradius/files/daloradius/daloRADIUS%20VM/">
+                        <img src="images/daloradius-vm.png" style="float: left; height: 90px; margin-right: 10px;" />
+                        </a>
                         <p>daloRADIUS appliance comes pre-installed with dalo, freeradius v2 and the LAMP stack to get you up and running a hotspot or basic authentication service in no-time.
                         <br/>
                         <a href="https://sourceforge.net/projects/daloradius/files/daloradius/daloRADIUS%20VM/" class="button" title="Learn more"><span>Get the appliance!</span></a>
