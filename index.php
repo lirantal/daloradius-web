@@ -127,9 +127,12 @@
                         <img src="images/daloradius-book-cover.jpg" style="float: left; height: 140px; margin-right: 10px;" />
                         </a>
                         <p>
-                        Spanning roughly 250 pages with step-by-step screenshots-based instructions, this book will guide you on managing a daloRADIUS deployed server to run FreeRADIUS AAA system.
+                        Spanning 250 pages of step-by-step instructions, this book will guide you on managing a daloRADIUS deployed server.
                         <br/>
                         <a href="http://www.amazon.com/daloRADIUS-User-Guide-Volume-1/dp/1463752199" class="button" title="Learn more"><span>Get the book!</span></a>
+                        <br/><br/>
+                        You can also get the digital version
+                        <a href="http://www.amazon.com/daloRADIUS-User-Guide-Volume-1/dp/1463752199" class="button" title="Learn more"><span>E-book PDF edition!</span></a>
                         </p>
                     </div>
 
