@@ -132,7 +132,7 @@
                         <a href="http://www.amazon.com/daloRADIUS-User-Guide-Volume-1/dp/1463752199" class="button" title="Learn more"><span>Get the book!</span></a>
                         <br/><br/>
                         You can also get the digital version
-                        <a href="http://www.amazon.com/daloRADIUS-User-Guide-Volume-1/dp/1463752199" class="button" title="Learn more"><span>E-book PDF edition!</span></a>
+                        <a href="https://sellfy.com/p/LxTp/" class="button" title="Learn more"><span>E-book PDF edition!</span></a>
                         </p>
                     </div>
 
