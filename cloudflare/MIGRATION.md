@@ -9,9 +9,46 @@ The user authorized source preparation, scoped provisioning and preview verifica
 **Present an actual deployed Git/PR preview for acceptance before production cutover.**
 No source acceptance or production cutover authorization has been given.
 
-No Cloudflare resource, DNS record, production domain binding, Git integration setting,
-Vercel project or GitHub Pages setting has been changed by this migration yet.
-The automatic Cloudflare preview workflow is NOT configured or verified yet.
+At initial preparation, no provider resources had changed and previews were not
+configured. See the verified resume section for current state.
+
+## Verified resume — 2026-11-13
+
+This section supersedes the initial access/provisioning observations below.
+
+- Account `default` verified by `cf accounts list`: `72bac654168b15b354744bf1e8b6762f`.
+- Active Free zone `daloradius.com`: `92444634a903b94f1bd99414649d4791`.
+- Initial full DNS inventory: only apex A `76.76.21.21` and www CNAME
+  `cname.vercel-dns.com`, both proxied. Both hostnames are migrate scope; all
+  other services remain untouched. No DNS or production domain binding changed.
+- Dedicated Worker `daloradius-web`, primary tag `70fb8364854e4146bd590ca8d90b64fb`.
+- Existing SCM integration connected to `lirantal/daloradius-web` (repo 25085598).
+  Production branch `master`; root `cloudflare`; Node `24.22.1`; build
+  `npm ci && npm run build`; production deploy `npm run deploy`; preview deploy
+  `npm run deploy:preview`; explicit verified account ID in both build environments.
+- Dedicated user build token registered as `daloradius-web build token`; account
+  settings read, Workers Scripts write in this account, user/membership read.
+  No DNS, KV or R2 permissions. Token values remain outside Git. Other apps tokens
+  were not reused or modified.
+- CLI creation initially saved legacy branch settings; converted through
+  `cf builds workers migrate-to-previews`. Parent `previews_enabled=true`;
+  branch preview `3d35088cc38046979ee7035e66406fb7` has auto_build/auto_delete true.
+- Proven Git `push_event`: commit `e9c5f8dcfcca403938f10c682f71c5ac3ee262e9`,
+  build `8f92c602-ba97-469e-b1d6-eb81a86a6074`, deploy completed successfully.
+  Immutable URL: https://326f3134-daloradius-web.liran-72b.workers.dev .
+  Branch alias: https://migrate-cloudflare-static-assets-daloradius-web.liran-72b.workers.dev .
+  The earlier legacy build was cancelled during conversion; manual previews are
+  provisioning evidence only, not the automation proof.
+- Dependencies restored with npm ci; local build passed. Browser baseline confirms
+  Home/Community navigation and rendering, existing missing tmp slider images,
+  mixed-content jQuery/fonts/vendor scripts, JS errors, and 1013px document width
+  at 390px viewport. External analytics/vendor icons are proxy-blocked; not verified.
+  These source issues predate migration and require explicit acceptance or later repair.
+- Fresh apex/www checks still return Vercel 402 DEPLOYMENT_DISABLED. Vercel remains
+  configured but is not a working rollback target. Recheck before any cutover.
+- Preview acceptance is pending. Do not merge or change production DNS yet.
+  The documentation update itself triggers another preview; final acceptance
+  must identify its exact successful head build and immutable URL.
 
 ## Source and runtime
 
