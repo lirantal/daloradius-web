@@ -12,6 +12,9 @@ export default defineConfig({
     },
     workersDev: true,
     previewUrls: true,
-    // Production domains are deliberately absent until preview acceptance.
+    triggers: [
+      { type: "fetch", pattern: "daloradius.com/*", zone: "daloradius.com" },
+      { type: "fetch", pattern: "www.daloradius.com/*", zone: "daloradius.com" },
+    ],
   },
 });
