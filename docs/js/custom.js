@@ -21,14 +21,14 @@ $(document).ready(function() {
         var item = $('#slider ul > li');         
         var visibleCount = 1;
         var marginWidth = 0; // if visibleCount > 1
-        var sliderWidth = item.length * (item.outerWidth() + marginWidth);
-        var sliderStepWidth = item.outerWidth() + marginWidth;
+        var sliderStepWidth = sliderWrap.width() + marginWidth;
+        var sliderWidth = item.length * sliderStepWidth;
         var visibleWidth = visibleCount * sliderStepWidth;
-        var count = item.length - 1;
         var endWidth = sliderWidth - visibleWidth; 
         var i = 0;
         var step = 0;
         var animationRun = false;
+        item.css('width', sliderStepWidth);
         $(slider).css('width', sliderWidth);
         
         $(item).each(function() {
@@ -45,7 +45,7 @@ $(document).ready(function() {
 
             function sliderAnimationNext() {
                 if(animationRun == false) {
-                    position = slider.position().left;                                                             
+                    var position = slider.position().left;
                     step = position - sliderStepWidth;      
                     if(step > (endWidth * -1) - sliderStepWidth){
                         $(slider).animate({ left: step }, duration, function() { animationRun = false; });
@@ -56,7 +56,7 @@ $(document).ready(function() {
 
             function sliderAnimationPrev() {
                 if(animationRun == false) {
-                    position = slider.position().left;    
+                    var position = slider.position().left;
                     step = position + sliderStepWidth;                         
                     if(step < 0 + sliderStepWidth){   
                         $(slider).animate({ left: step }, duration, function() { animationRun = false; });
