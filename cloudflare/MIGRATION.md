@@ -2,16 +2,16 @@
 
 ## Current status
 
-Updated on 2026-11-13 after PR #4 merged to `master` as `212bf6d`. The user accepted
+Updated on 2026-11-13 after PR #5 merged to `master` as `bfb794c`. The user accepted
 the corrected preview and authorized production deployment. The `daloradius-web`
-Worker is deployed from `master`; this change adds its production hostname routes.
+Worker and its production hostname routes are deployed from `master`.
 
 The verified Cloudflare account is named `default`. The active Free zone has exactly
 two DNS records: the proxied apex A record and the proxied `www` CNAME. There are no
 other DNS records in the zone. A fresh private DNS export, Worker settings snapshot,
 and route snapshot were captured before this change. The zone had no Worker routes,
-and `daloradius-web` had no additional bindings. Both official hostnames still return
-Vercel 402 `DEPLOYMENT_DISABLED`, so Vercel is not a working rollback origin.
+and `daloradius-web` had no additional bindings. Vercel still returns 402
+`DEPLOYMENT_DISABLED`, so it is not a working rollback origin if the routes are removed.
 
 The production setup uses Worker Routes for `daloradius.com/*` and
 `www.daloradius.com/*`. Both DNS records are already proxied, so the routes can serve
@@ -61,8 +61,8 @@ the same content; no canonical redirect is added.
 - Vercel project observed in the repository's latest Vercel status:
   `liran-tals-projects/daloradius-web`.
 - Fresh HTTPS requests immediately before routing both hostnames returned **402
-  `DEPLOYMENT_DISABLED`**. The preserved DNS targets lead back to Vercel, but Vercel
-  currently cannot serve the site.
+  `DEPLOYMENT_DISABLED`**. The preserved DNS targets lead back to Vercel, which
+  currently cannot serve the site if the Worker routes are removed.
 - DNS is not changed by the Worker Route cutover. To roll back routing, remove only
   these two route patterns and apply the Worker triggers again. The original DNS values
   remain in Cloudflare.
@@ -125,9 +125,11 @@ Do not store tokens or secrets in this document or ask for them in chat.
 - GitHub Actions build checks are added for PRs and master; these do not deploy previews.
   Vercel's existing integration can report billing failures independently of this build.
 
-## Production verification checklist
+## Production verification
 
-1. Apply the `daloradius-web` Worker triggers in the verified `default` account.
-2. Confirm apex and `www` serve the production Worker, assets load, HSTS is present,
-   the preview `noindex` header is absent, and missing paths remain 404s.
-3. Confirm the existing apex and `www` DNS records remain unchanged.
+- Confirmed both `https://daloradius.com/` and `https://www.daloradius.com/` return 200.
+- Confirmed `/testimonials.html`, the VM image, a screenshot image, jQuery and CSS
+  return 200 on both hostnames.
+- Confirmed HSTS is `max-age=63072000`, the preview `X-Robots-Tag` is absent, and a
+  missing path returns 404 on both hostnames.
+- Confirmed the apex A record and `www` CNAME are unchanged; both remain proxied.
