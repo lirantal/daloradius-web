@@ -10,7 +10,7 @@
         <link rel="shortcut icon" href="/favicon.ico">
         <link rel="apple-touch-icon" href="/apple-touch-icon.png">
         <link rel="stylesheet" href="css/main.css?v=1.0" media="screen,projection">
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+        <script src="js/jquery-1.6.4.js"></script>
         <script src="js/jquery.mousewheel-3.0.4.pack.js"></script>
         <script src="js/jquery.fancybox-1.3.4.pack.js"></script>
         <script src="js/custom.js"></script>
@@ -63,8 +63,8 @@
                                     <!-- <a href="./" class="button" title="Learn more"><span>Learn more</span></a> -->
                                 </div>
                                 
-                                <div id="image">
-                                    <img src="./tmp/mng1_1.png" alt="Screen">
+                                <div class="slide-image">
+                                    <img src="images/daloradius.png" alt="daloRADIUS user management screen">
                                 </div>
                             </li>
                             <li>
@@ -77,8 +77,8 @@
                                     <!-- <a href="./" class="button" title="Learn more"><span>Learn more</span></a> -->
                                 </div>
                                 
-                                <div id="image">
-                                    <img src="./tmp/graph2_1.png" alt="Screen">
+                                <div class="slide-image">
+                                    <img src="images/screenshots/new_feature-graphs-size.png" alt="daloRADIUS graph report">
                                 </div>
                             </li>
                             <li>
@@ -96,8 +96,8 @@
                                     <!-- <a href="./" class="button" title="Learn more"><span>Learn more</span></a> -->
                                 </div>
                                 
-                                <div id="image">
-                                    <img src="./tmp/accounting1_2.png" alt="Screen">
+                                <div class="slide-image">
+                                    <img src="images/screenshots/new_feature-accounting-plans-usage.png" alt="daloRADIUS accounting report">
                                 </div>
                             </li>
                         </ul>
@@ -118,27 +118,30 @@
 
                 <div class="cols clearFix">
 
-                    <div class="col1-3 withIcon icon1">
+                    <div class="col1-3 withIcon icon1 feature-card">
                         <h2>daloRADIUS User Guide</h2>
-                        <a href="https://leanpub.com/daloradius-user-guide">
-                        <img src="images/daloradius-book-cover.jpg" style="float: left; height: 140px; margin-right: 10px;" />
-                        </a>
-                        <p>
-                        Spanning 250 pages of step-by-step instructions, this book will guide you on managing a daloRADIUS deployed server.
-                        <br/>
-                        <a href="https://leanpub.com/daloradius-user-guide" class="button" title="Learn more"><span>Get the book!</span></a>
-                        </p>
+                        <div class="feature-body">
+                            <a class="feature-image" href="https://leanpub.com/daloradius-user-guide">
+                                <img src="images/daloradius-book-cover.jpg" alt="daloRADIUS User Guide book cover" />
+                            </a>
+                            <div class="feature-copy">
+                                <p>Spanning 250 pages of step-by-step instructions, this book will guide you on managing a daloRADIUS deployed server.</p>
+                                <a href="https://leanpub.com/daloradius-user-guide" class="button" title="Learn more"><span>Get the book!</span></a>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="col1-3 withIcon icon2">
+                    <div class="col1-3 withIcon icon2 feature-card">
                         <h2>daloRADIUS Virtual Machine</h2>
-                        <a href="https://sourceforge.net/projects/daloradius/files/daloradius/daloRADIUS%20VM/">
-                        <img src="images/daloradius-vm.png" style="float: left; height: 90px; margin-right: 10px;" />
-                        </a>
-                        <p>daloRADIUS appliance comes pre-installed with dalo, freeradius v2 and the LAMP stack to get you up and running a hotspot or basic authentication service in no-time.
-                        <br/>
-                        <a href="https://sourceforge.net/projects/daloradius/files/daloradius/daloRADIUS%20VM/" class="button" title="Learn more"><span>Get the appliance!</span></a>
-                        </p>
+                        <div class="feature-body">
+                            <a class="feature-image" href="https://sourceforge.net/projects/daloradius/files/daloradius/daloRADIUS%20VM/">
+                                <img src="images/daloradius-vm.png" alt="daloRADIUS virtual machine running in VirtualBox" />
+                            </a>
+                            <div class="feature-copy">
+                                <p>daloRADIUS appliance comes pre-installed with dalo, FreeRADIUS v2 and the LAMP stack to get you up and running a hotspot or basic authentication service in no time.</p>
+                                <a href="https://sourceforge.net/projects/daloradius/files/daloradius/daloRADIUS%20VM/" class="button" title="Learn more"><span>Get the appliance!</span></a>
+                            </div>
+                        </div>
                     </div>
                     
                     <div class="col1-3">
@@ -166,8 +169,6 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
                 </div> <!-- / .cols -->                                
 
                 <hr> 
-
-<br/><br/>
 
                 <div id="content" class="clearFix">
 

@@ -4,14 +4,23 @@
 
 Prepared on 2026-11-13 from `master` at
 `6bebdecabb0149514cc9c65cf90d849024bb555f` on branch
-`migrate/cloudflare-static-assets`. No existing migration PR or handoff was found.
-The user authorized source preparation, scoped provisioning and preview verification.
-**Present an actual deployed Git/PR preview for acceptance before production cutover.**
-No source acceptance or production cutover authorization has been given.
+`migrate/cloudflare-static-assets`. PR #3 was later merged by the user to `master`
+as `e192724`.
 
-No Cloudflare resource, DNS record, production domain binding, Git integration setting,
-Vercel project or GitHub Pages setting has been changed by this migration yet.
-The automatic Cloudflare preview workflow is NOT configured or verified yet.
+The user reviewed the Git preview at
+`https://d3337f13-daloradius-web.liran-72b.workers.dev` (source commit
+`0ff0e8b9f201fab90013ac01991c6804722c0615`) and requested fixes for the carousel
+screenshots, controls, and User Guide / VM alignment. The current correction is being
+prepared on `fix/preview-ui`; present its automatic Git preview for acceptance.
+The Cloudflare account named `default` and automatic Git previews were verified in the
+prior session. Production DNS is unchanged. Vercel returns 402, so it is not currently
+a usable rollback path.
+
+**Present the corrected deployed Git preview for acceptance before production cutover.**
+No preview acceptance or production cutover authorization has been given.
+
+A dedicated `daloradius-web` Worker and Git integration are in use for previews. No
+production domain binding or DNS record has been changed by this migration.
 
 ## Source and runtime
 
@@ -23,7 +32,7 @@ The automatic Cloudflare preview workflow is NOT configured or verified yet.
   queue, cron, server API, media streaming or private route was found for the static site.
 - Chosen target: a dedicated `daloradius-web` Worker with Static Assets, no application
   Worker code. Check for an existing same-name resource before provisioning or deploying.
-- The source static directory has 92 files, about 2.5 MB. Largest file: 405,977 bytes.
+- The source static directory now has 93 files, about 2.6 MB. Largest file: 405,977 bytes.
   Current documented Workers limits checked 2026-11-13: 25 MiB per asset;
   20,000 assets on Free / 100,000 on Paid. This site fits the Free asset limits.
   Reference: https://developers.cloudflare.com/workers/platform/limits/
@@ -48,7 +57,8 @@ The automatic Cloudflare preview workflow is NOT configured or verified yet.
 
 ## Account, hostnames and rollback scope
 
-- Authorized account name: **default**. Its account ID is **not verified yet**.
+- Authorized account name: **default**. The account was verified in the prior session;
+  its ID is intentionally omitted from this handoff.
 - Zone ID, complete DNS inventory, zone overrides, Worker IDs/tags and plan: unknown.
 - Intended migration: `daloradius.com` and its website alias `www.daloradius.com`.
   Confirm the alias and current bindings during provider discovery.
@@ -95,26 +105,14 @@ npm run deploy
 ```
 
 The production deployment command still has no production custom domains configured.
-Do not run it until scope/resource discovery is complete. No real deploy has been tested.
+Do not run it until scope/resource discovery is complete. No production deploy has been run.
 
-## Environment and access blocker
+## Environment and access
 
-The initial selected executor was
-`ccarenv_b64_Y2NhcmVudl8yMGY2ZjBlMzIwODQ4MTkxOGNlMTBlYzk1NWIwYzU0Yw`.
-Observed revision 1 had current readiness and enforced restricted networking.
-GitHub CLI authentication as `lirantal` worked. No Cloudflare secrets or outbound
-identities were configured. Cloudflare CLI was initially absent and installed locally.
-
-`https://api.cloudflare.com/client/v4/accounts` failed at proxy CONNECT with HTTP 403;
-this is an environment denial, not a Cloudflare origin response. CLI device login
-could not start. `cloudflare.com` alone does not allow its API subdomain.
-
-The user will update environment settings and resume in a new session. Required
-additional hosts: `api.cloudflare.com`, `dash.cloudflare.com`,
-`developers.cloudflare.com`; include any additional documented OAuth host if observed.
-Existing `*.workers.dev` access should cover Worker previews. Preserve existing hosts.
-Freshly inspect the next executor's observed policy/readiness, then test access again.
-Never ask for API tokens in chat or bypass the environment proxy.
+The first executor initially denied Cloudflare API access at proxy CONNECT. The user
+later verified the `default` account and working Git previews through the configured
+integration. GitHub CLI authentication as `lirantal` is available in this workspace.
+Do not store tokens or secrets in this document or ask for them in chat.
 
 ## Local verification and limits
 
@@ -124,43 +122,24 @@ Never ask for API tokens in chat or bypass the environment proxy.
 - `/missing-route`, `/index.php`, `/.git/config`, `/README.md`: true 404.
 - HEAD `/`: 200, no body. HSTS present. Preview header present across tested routes
   and errors; production staging removes the preview header.
-- Chromium desktop rendering, Home/Community navigation and 390px viewport inspected
-  locally. External requests were deliberately aborted in that local rendering check;
-  vendor integrations, jQuery-dependent interaction and live preview behavior remain
-  unverified. This is not deployed acceptance.
-- Existing source issues: both HTML pages reference three absent `tmp/` slider images;
-  jQuery and Google Fonts use HTTP URLs, unsuitable for an HTTPS page. Several legacy
-  vendor scripts/icons also use HTTP. Do not confuse them with migration regressions.
-  The legacy fixed-width layout overflows a 390px viewport (document width 1013px).
-  Resolve or explicitly accept these source issues during preview acceptance.
-- No live Cloudflare preview, immutable deployment URL, successful Git-triggered
-  Cloudflare build or production smoke test exists yet.
+- Local Playwright review verified that all three slider screenshots load, Next and
+  Prev change slides, and the User Guide / VM action buttons share a baseline on wide
+  layouts. The document fits 320px through desktop widths; jQuery is served locally and
+  Google Fonts now use HTTPS.
+- Several legacy ad, stats and customer-icon resources still use HTTP and were not
+  verified. Their behavior remains outside this correction.
+- The earlier live preview and Git-triggered deployment were verified. Acceptance of the
+  corrected branch preview is still pending; production cutover remains unauthorized.
 - GitHub Actions build checks are added for PRs and master; these do not deploy previews.
   Vercel's existing integration can report billing failures independently of this build.
 
 ## Resume checklist
 
-1. Read the user-specified migration skill and this document. Inspect the current
-   branch/PR/head and checks; resume these changes rather than recreating them.
-2. Verify the new environment, provider network access, and `gh` authentication.
-   Use supported `cf auth login --no-browser`; inspect command help/current schemas.
-3. Verify the **default** account's actual ID; list the daloradius zone records,
-   Worker resources, Vercel project and current settings. Do not reuse another app's
-   Worker or other resources. Capture exact scope and missing facts in this document.
-4. Provision/connect the dedicated Worker using the user's existing Cloudflare/GitHub
-   SCM integration. Candidate settings, not yet applied:
-   - repository `lirantal/daloradius-web`, production branch `master`
-   - root `cloudflare`, Node 24.22.1, dependency install `npm ci`
-   - build `npm run build`, production deploy `npm run deploy`
-   - non-production deploy `npm run deploy:preview`
-   - verified `CLOUDFLARE_ACCOUNT_ID` as a non-secret build variable
-   - enable non-production builds and preview URLs; no production custom domains
-   Inspect actual supported settings and primary Worker identity before applying.
-5. Push a safe branch event after integration setup; verify the exact source SHA,
-   successful automatic build and immutable deployed URL. A manual deploy is insufficient.
-6. Run real HTTP/browser acceptance checks on that preview, including HTTPS dependencies,
-   noindex, navigation, links/assets/errors and legacy source issues. Present the exact
-   commit, immutable URL, evidence and limits for user acceptance. Stop before cutover.
-7. After acceptance, verify main deployment, recheck Vercel rollback availability,
-   snapshot current DNS/bindings/routes privately, and perform only the agreed hostname
-   cutover. Persist final domains in configuration and verify the normal Git deployment.
+1. Confirm the automatic preview for the latest `fix/preview-ui` commit, including its
+   source SHA, HTTPS behavior, image assets, carousel controls, navigation, noindex header
+   and true 404s. Present the deployed URL for user acceptance.
+2. Stop before production cutover until the user accepts the preview. Before cutover,
+   verify the account and Worker identity, capture a fresh website-only DNS/binding
+   snapshot, and recheck whether Vercel can serve as rollback.
+3. Change only the agreed website hostname records after acceptance; preserve mail,
+   unrelated hostnames and services. Verify the normal Git deployment after cutover.
