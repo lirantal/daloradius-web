@@ -1,0 +1,6 @@
+cloudflare/node_modules/
+cloudflare/public/
+cloudflare/.cloudflare/
+cloudflare/.wrangler/
+.env
+.env.*
